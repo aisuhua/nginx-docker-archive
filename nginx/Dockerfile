@@ -25,10 +25,12 @@ RUN chown -R 1001:0 \
         /application \
         /etc/nginx \
         /var/run/nginx \
+        /var/cache/nginx/ \
     && chmod -R 775 \
         /application \
         /etc/nginx \
         /var/run/nginx \
+        /var/cache/nginx \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
