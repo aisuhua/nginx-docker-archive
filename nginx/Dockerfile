@@ -34,4 +34,10 @@ RUN chown -R 1001:0 \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+USER 1001
+
+WORKDIR /application
+
+EXPOSE 8080
+
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
