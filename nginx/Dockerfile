@@ -10,8 +10,8 @@ RUN printf "%s%s%s%s\n" \
     && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN apk add --no-cache \
-    nginx@nginx \
-    nginx-module-image-filter@nginx
+    nginx \
+    nginx-mod-http-image-filter
 
 RUN mkdir -p \
         /application \
