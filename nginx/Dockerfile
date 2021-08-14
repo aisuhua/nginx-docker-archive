@@ -14,29 +14,33 @@ RUN apk add --no-cache \
     nginx-mod-http-image-filter
 
 RUN mkdir -p \
-        /application \
-        /var/run/nginx
+        /app \
+        /var/run/nginx \
+        /var/cache/nginx \
+        /var/lib/nginx  
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY index.html /application
+COPY index.html /app
 
 RUN chown -R 1001:0 \
-        /application \
-        /etc/nginx \
-        /var/run/nginx \
-        /var/cache/nginx/ \
-    && chmod -R 775 \
-        /application \
+        /app \
         /etc/nginx \
         /var/run/nginx \
         /var/cache/nginx \
+        /var/lib/nginx \
+    && chmod -R 775 \
+        /app \
+        /etc/nginx \
+        /var/run/nginx \
+        /var/cache/nginx \
+        /var/lib/nginx \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
 USER 1001
 
-WORKDIR /application
+WORKDIR /app
 
 EXPOSE 8080
 
