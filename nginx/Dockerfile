@@ -20,7 +20,7 @@ RUN mkdir -p \
         /var/lib/nginx  
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY conf.d /etc/nginx/conf.d
 COPY index.html /app
 
 RUN chown -R 0:0 \
