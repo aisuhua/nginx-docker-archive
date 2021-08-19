@@ -23,7 +23,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY index.html /app
 
-RUN chown -R 1001:0 \
+RUN chown -R 0:0 \
         /app \
         /etc/nginx \
         /var/run/nginx \

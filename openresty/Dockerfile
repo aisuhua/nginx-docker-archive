@@ -16,7 +16,7 @@ COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY default.conf /usr/local/openresty/nginx/conf.d/default.conf
 COPY index.html /application
 
-RUN chown -R 1001:0 \
+RUN chown -R 0:0 \
         /application \
         /usr/local/openresty \
     && chmod -R 775 \
