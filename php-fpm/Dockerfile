@@ -19,7 +19,6 @@ RUN ln -s /usr/bin/php8 /usr/bin/php \
 	&& chown 0:0 /app \
 	&& chmod -R 775 /app
 
-
 USER 1001
 
 STOPSIGNAL SIGQUIT
