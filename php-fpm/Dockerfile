@@ -2,6 +2,9 @@ FROM alpine:3.14.1
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
+RUN apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 RUN apk add --no-cache \
 	php8 \
 	php8-fpm
@@ -20,10 +23,9 @@ RUN ln -s /usr/bin/php8 /usr/bin/php \
 	&& chmod -R 775 /app
 
 USER 1001
+WORKDIR /app
 
 STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
 CMD ["php-fpm"]
-#ENTRYPOINT ["tail"]
-#CMD ["-f","/dev/null"]
