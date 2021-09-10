@@ -9,6 +9,9 @@ RUN printf "%s%s%s%s\n" \
     && wget "https://nginx.org/keys/nginx_signing.rsa.pub" -O "/etc/apk/keys/nginx_signing.rsa.pub" \
     && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
+RUN apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 RUN apk add --no-cache \
     nginx \
     nginx-mod-http-image-filter

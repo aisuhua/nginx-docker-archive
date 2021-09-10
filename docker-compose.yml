@@ -1,0 +1,8 @@
+nginx:
+    image: nginx:latest
+    ports:
+        - "80:8080"
+    links:
+        - php-fpm
+php-fpm:
+    image: php-fpm:latest
