@@ -19,8 +19,6 @@ RUN apk add --no-cache \
 #COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 #COPY default.conf /usr/local/openresty/nginx/conf.d/default.conf
 
-COPY openresty/lua_module /usr/local/openresty/lua_module
-
 RUN chown -R 0:0 \
         /usr/local/openresty \
     && chmod -R 775 \
@@ -28,7 +26,7 @@ RUN chown -R 0:0 \
     && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
     && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log
 
-USER 1001
+#USER 1001
 
 WORKDIR /app
 
