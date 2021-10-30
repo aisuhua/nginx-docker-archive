@@ -99,36 +99,6 @@ function _M.uncompress(str)
    -- return zlib.inflate(level, windowSize)(str, "finish")
 end
 
-local ffi_zlib = require "ffi-zlib"
-function _M.compress2(str)
-    local chunk = 16384
-    local count = 0 
-
-    local input = function(bufsize)  
-        local start = count > 0 and bufsize*count or 1  
-        local data = str:sub(start, (bufsize*(count+1)-1))  
-        if data == "" then  
-            data = nil  
-        end
-        -- print(data)
-        count = count + 1  
-        return data  
-    end 
-
-    local output_table = {}  
-    local output = function(data)
-        table.insert(output_table, data)
-    end 
-
-    local ok, err = ffi_zlib.deflateGzip(input, output, chunk)  
-    if not ok then  
-        print(err)
-    end 
- 
-    local compress = table.concat(output_table,'')
-    return compress
-end
-
 -- AES Object
 local aes = require "resty.aes"
 function _M.get_aes()
