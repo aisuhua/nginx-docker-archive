@@ -13,16 +13,8 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
     openresty
 
-#RUN mkdir -p 
-#    /usr/local/openresty/nginx/conf/proxy-server
-
-#COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
-#COPY default.conf /usr/local/openresty/nginx/conf.d/default.conf
-
 COPY openresty/lua_module /usr/local/openresty/lua_module
 COPY openresty/lualib/zlib.so /usr/local/openresty/lualib/zlib.so
-
-COPY openresty/nginx/conf /usr/local/openresty/nginx/conf
 
 RUN chown -R 0:0 \
         /usr/local/openresty \
@@ -31,10 +23,11 @@ RUN chown -R 0:0 \
     && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
     && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log
 
-#USER 1001
+# for local build
+# COPY openresty/nginx/conf /usr/local/openresty/nginx/conf
 
-WORKDIR /app
-
+USER 1001
+WORKDIR /usr/local/openresty/nginx/conf
 EXPOSE 8080
 
-CMD ["/usr/local/openresty/nginx/sbin/nginx", "-g", "daemon off;"]
+#CMD ["/usr/local/openresty/nginx/sbin/nginx", "-g", "daemon off;"]
