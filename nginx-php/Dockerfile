@@ -37,6 +37,8 @@ RUN apk add --no-cache \
     php7-zip \
     php7-mysqli \
     php7-soap \
+    php7-ldap \
+    php7-iconv \
     php7-pear \
     php7-pecl-imagick \
     php7-pecl-msgpack \
